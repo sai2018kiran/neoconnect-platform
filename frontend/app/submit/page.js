@@ -14,7 +14,7 @@ const [anonymous,setAnonymous] = useState(false)
 
 const submitCase = async () => {
 
-await axios.post("http://localhost:5000/api/cases",{
+await axios.post("https://neoconnect-platform.onrender.com/api/cases",{
 
 category,
 department,
