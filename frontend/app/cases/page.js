@@ -12,13 +12,13 @@ fetchCases()
 },[])
 
 const fetchCases = async()=>{
-const res = await axios.get("http://localhost:5000/api/cases")
+const res = await axios.get("https://neoconnect-platform.onrender.com")
 setCases(res.data)
 }
 
 const updateStatus = async(id,status)=>{
 
-await axios.put(`http://localhost:5000/api/cases/${id}/status`,{
+await axios.put(`https://neoconnect-platform.onrender.com/api/cases/${id}/status`,{
 status
 })
 
