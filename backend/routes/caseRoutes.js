@@ -2,16 +2,16 @@ const express = require("express")
 const router = express.Router()
 
 const Case = require("../models/Case")
-const generateTrackingId = require("../utils/trackingId")
 
-// create complaint
-router.post("/", async(req,res)=>{
+// CREATE COMPLAINT
+router.post("/", async (req, res) => {
 
-try{
+try {
 
-const count = await Case.countDocuments()
+const year = new Date().getFullYear()
+const unique = Date.now()
 
-const trackingId = generateTrackingId(count)
+const trackingId = `NEO-${year}-${unique}`
 
 const newCase = new Case({
 ...req.body,
@@ -22,47 +22,63 @@ await newCase.save()
 
 res.json(newCase)
 
-}
-catch(error){
+} catch (error) {
 
-res.status(500).json(error)
+res.status(500).json({
+message: "Error creating case",
+error
+})
 
 }
 
 })
 
 
-// get all cases
-router.get("/", async(req,res)=>{
+// GET ALL CASES
+router.get("/", async (req, res) => {
 
-const cases = await Case.find()
+try {
+
+const cases = await Case.find().sort({ createdAt: -1 })
 
 res.json(cases)
 
+} catch (error) {
+
+res.status(500).json({
+message: "Error fetching cases",
+error
+})
+
+}
+
 })
 
 
-// update case status
-router.put("/:id/status", async (req,res)=>{
+// UPDATE CASE STATUS
+router.put("/:id/status", async (req, res) => {
 
-    try{
-    
-    const {status} = req.body
-    
-    const updated = await Case.findByIdAndUpdate(
-    req.params.id,
-    {status},
-    {new:true}
-    )
-    
-    res.json(updated)
-    
-    }catch(error){
-    
-    res.status(500).json(error)
-    
-    }
-    
-    })
-    
+try {
+
+const { status } = req.body
+
+const updated = await Case.findByIdAndUpdate(
+req.params.id,
+{ status },
+{ new: true }
+)
+
+res.json(updated)
+
+} catch (error) {
+
+res.status(500).json({
+message: "Error updating case status",
+error
+})
+
+}
+
+})
+
 module.exports = router
