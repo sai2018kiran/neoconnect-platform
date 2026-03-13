@@ -13,12 +13,12 @@ fetchPolls()
 },[])
 
 const fetchPolls = async()=>{
-const res = await axios.get("http://localhost:5000/api/polls")
+const res = await axios.get("https://neoconnect-platform.onrender.com/api/polls")
 setPolls(res.data)
 }
 
 const vote = async(pollId,index)=>{
-await axios.post("http://localhost:5000/api/polls/vote",{
+await axios.post("https://neoconnect-platform.onrender.com/api/polls/vote",{
 pollId,
 optionIndex:index,
 userId:"user1"
