@@ -36,18 +36,16 @@ Case Management
 
 <div className="overflow-x-auto">
 
-<table className="w-full border border-gray-300 table-auto">
+<table className="w-full border border-gray-300 table-fixed">
 
 <thead className="bg-gray-200">
 
 <tr>
-
-<th className="p-3 text-left w-1/5">Tracking ID</th>
-<th className="p-3 text-left w-1/5">Category</th>
-<th className="p-3 text-left w-1/5">Department</th>
-<th className="p-3 text-left w-1/5">Status</th>
-<th className="p-3 text-left w-1/5">Update</th>
-
+<th className="p-3 text-center">Tracking ID</th>
+<th className="p-3 text-center">Category</th>
+<th className="p-3 text-center">Department</th>
+<th className="p-3 text-center">Status</th>
+<th className="p-3 text-center">Update</th>
 </tr>
 
 </thead>
@@ -56,18 +54,17 @@ Case Management
 
 {cases.map((c)=>(
 
-<tr key={c._id} className="border-t hover:bg-gray-50">
+<tr key={c._id} className="border-t text-center">
 
 <td className="p-3">{c.trackingId}</td>
 <td className="p-3">{c.category}</td>
 <td className="p-3">{c.department}</td>
-
-<td className="p-3 font-medium">{c.status}</td>
+<td className="p-3">{c.status}</td>
 
 <td className="p-3">
 
 <select
-className="border rounded p-1"
+className="border rounded px-2 py-1"
 onChange={(e)=>updateStatus(c._id,e.target.value)}
 >
 
@@ -90,7 +87,6 @@ onChange={(e)=>updateStatus(c._id,e.target.value)}
 </tbody>
 
 </table>
-
 </div>
 
 </div>
