@@ -12,7 +12,7 @@ fetchCases()
 },[])
 
 const fetchCases = async()=>{
-const res = await axios.get("https://neoconnect-platform.onrender.com")
+const res = await axios.get("https://neoconnect-platform.onrender.com/api/cases")
 setCases(res.data)
 }
 
